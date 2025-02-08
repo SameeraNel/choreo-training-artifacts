@@ -43,12 +43,14 @@ export default function App() {
   varuserInfo = JSON.parse(atob(sessionStorage.getItem("userInfo")!));
   setSignedIn(true);
   setUser(getMappedUser(userInfo));
-} else {console.log("Userisnotsignedin");
-  if (window.location.pathname!=="/auth/login"&&window.location.pathname!=="/") {
+} else { 
+      console.log("Userisnotsignedin");
+  if (window.location.pathname !== "/auth/login" && window.location.pathname !== "/") {
     window.location.pathname="/auth/login";
   }
 }
-setIsAuthLoading(false);},[]);
+setIsAuthLoading(false);
+  },[]);
 
   if (isAuthLoading) {
     return <div>User authenticating...</div>;
