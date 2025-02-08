@@ -28,32 +28,35 @@ export default function App() {
 
  function getMappedUser(userInfo:any):User{return{email:userInfo?.email||"",id:userInfo?.sub||"",name:userInfo?.first_name+""+userInfo?.last_name,mobileNumber:userInfo?.mobile_number||"",};}
   
-  useEffect(()=>{
+  useEffect(() => {
   setIsAuthLoading(true);
   if (Cookies.get("userinfo")) {
     // Wearehereafteralogin
   const userInfoCookie = Cookies.get("userinfo");
-  sessionStorage.setItem("userInfo",userInfoCookie||"");
+  sessionStorage.setItem("userInfo", userInfoCookie || "");
   Cookies.remove("userinfo");
-  var userInfo = userInfoCookie?JSON.parse(atob(userInfoCookie)):{};
+  var userInfo = userInfoCookie ? JSON.parse(atob(userInfoCookie)) : {};
   setSignedIn(true);
-  setUser(getMappedUser(userInfo));}
-    else if (sessionStorage.getItem("userInfo")) {
+  setUser(getMappedUser(userInfo));
+  }
+ else if (sessionStorage.getItem("userInfo")) {
   // Wehavealreadyloggedin
   var userInfo = JSON.parse(atob(sessionStorage.getItem("userInfo")!));
   setSignedIn(true);
   setUser(getMappedUser(userInfo));
 } else { 
       console.log("Userisnotsignedin");
-  if (window.location.pathname !== "/auth/login" && window.location.pathname !== "/") {
+  if (window.location.pathname !== "/auth/login" && 
+      window.location.pathname !== "/"
+     ) {
     window.location.pathname="/auth/login";
   }
 }
 setIsAuthLoading(false);
-  },[]);
+  }, []);
 
   if (isAuthLoading) {
-    return <div>User authenticating...</div>;
+    return <div>User authenticating...</div> ;
   }
 
   return (
