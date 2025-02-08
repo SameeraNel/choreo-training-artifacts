@@ -32,15 +32,15 @@ export default function App() {
   setIsAuthLoading(true);
   if (Cookies.get("userinfo")) {
     // Wearehereafteralogin
-  const userInfoCookie=Cookies.get("userinfo");
+  const userInfoCookie = Cookies.get("userinfo");
   sessionStorage.setItem("userInfo",userInfoCookie||"");
   Cookies.remove("userinfo");
-  var userInfo=userInfoCookie?JSON.parse(atob(userInfoCookie)):{};
+  var userInfo = userInfoCookie?JSON.parse(atob(userInfoCookie)):{};
   setSignedIn(true);
   setUser(getMappedUser(userInfo));}
-    elseif(sessionStorage.getItem("userInfo")){
+    else if (sessionStorage.getItem("userInfo")) {
   // Wehavealreadyloggedin
-  varuserInfo = JSON.parse(atob(sessionStorage.getItem("userInfo")!));
+  var userInfo = JSON.parse(atob(sessionStorage.getItem("userInfo")!));
   setSignedIn(true);
   setUser(getMappedUser(userInfo));
 } else { 
