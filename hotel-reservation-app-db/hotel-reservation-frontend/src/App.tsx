@@ -26,7 +26,7 @@ export default function App() {
   });
   const [isAuthLoading, setIsAuthLoading] = useState(false);
 
- functiongetMappedUser(userInfo:any):User{return{email:userInfo?.email||"",id:userInfo?.sub||"",name:userInfo?.first_name+""+userInfo?.last_name,mobileNumber:userInfo?.mobile_number||"",};}
+ function getMappedUser(userInfo:any):User{return{email:userInfo?.email||"",id:userInfo?.sub||"",name:userInfo?.first_name+""+userInfo?.last_name,mobileNumber:userInfo?.mobile_number||"",};}
   
   useEffect(()=>{
   setIsAuthLoading(true);
