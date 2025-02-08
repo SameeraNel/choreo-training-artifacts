@@ -28,13 +28,13 @@ export default function App() {
 
   functiongetMappedUser(userInfo:any):User{ 
     return{
-      email:userInfo?.email||"",id:userInfo?.sub||"",name:userInfo?.first_name+""+userInfo?.last_name,mobileNumber:userInfo?.mobile_number||"",
+      email:userInfo?.email||"", id:userInfo?.sub||"", name:userInfo?.first_name+""+userInfo?.last_name, mobileNumber:userInfo?.mobile_number||"",
     };
   }
   useEffect(()=>{
   setIsAuthLoading(true);
-    if(Cookies.get("userinfo")) {
-  //Wearehereafteralogin
+  if (Cookies.get("userinfo")) {
+    // Wearehereafteralogin
   const userInfoCookie=Cookies.get("userinfo");
   sessionStorage.setItem("userInfo",userInfoCookie||"");
   Cookies.remove("userinfo");
@@ -42,15 +42,15 @@ export default function App() {
   setSignedIn(true);
   setUser(getMappedUser(userInfo));}
     elseif(sessionStorage.getItem("userInfo")){
-//Wehavealreadyloggedin
-varuserInfo=JSON.parse(atob(sessionStorage.getItem("userInfo")!));
+  // Wehavealreadyloggedin
+  varuserInfo = JSON.parse(atob(sessionStorage.getItem("userInfo")!));
   setSignedIn(true);
   setUser(getMappedUser(userInfo));
 } else {console.log("Userisnotsignedin");
-if(window.location.pathname!=="/auth/login"&&window.location.pathname!=="/") {
-  window.location.pathname="/auth/login";
+  if (window.location.pathname!=="/auth/login"&&window.location.pathname!=="/") {
+    window.location.pathname="/auth/login";
+  }
 }
-       }
 setIsAuthLoading(false);},[]);
 
   if (isAuthLoading) {
